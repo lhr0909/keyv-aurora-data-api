@@ -1,24 +1,23 @@
 'use strict';
 
 const KeyvSql = require('@keyv/sql');
-const Pool = require('pg').Pool;
+const DataAPIClient = require('data-api-client');
 
-class KeyvPostgres extends KeyvSql {
-	constructor(opts) {
-		opts = Object.assign({
-			dialect: 'postgres',
-			uri: 'postgresql://localhost:5432'
-		}, opts);
+class KeyvAuroraDataAPI extends KeyvSql {
+  constructor(opts) {
+    opts = Object.assign({
+      dialect: 'postgres',
+    }, opts);
 
-		opts.connect = () => Promise.resolve()
-			.then(() => {
-				const pool = new Pool({ connectionString: opts.uri });
-				return sql => pool.query(sql)
-					.then(data => data.rows);
-			});
+    opts.connect = () => Promise.resolve()
+      .then(() => {
+        const data = DataAPIClient(opts);
+        return sql => data.query(sql)
+          .then(data => data.records);
+      });
 
-		super(opts);
-	}
+    super(opts);
+  }
 }
 
-module.exports = KeyvPostgres;
+module.exports = KeyvAuroraDataAPI;

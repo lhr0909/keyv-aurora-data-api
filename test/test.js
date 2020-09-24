@@ -1,9 +1,13 @@
 import test from 'ava';
-import keyvTestSuite, { keyvOfficialTests } from '@keyv/test-suite';
+import keyvTestSuite from '@keyv/test-suite';
 import Keyv from 'keyv';
-import KeyvPostgres from 'this';
+import KeyvAuroraDataAPI from 'this';
 
-keyvOfficialTests(test, Keyv, 'postgresql://postgres@localhost:5432/keyv_test', 'postgresql://foo');
+const store = () => new KeyvAuroraDataAPI({
+  dialect: 'postgres', // or 'mysql'
+  secretArn: 'arn:aws:secretsmanager:us-east-1:XXXXXXXXXXXX:secret:mySecret',
+  resourceArn: 'arn:aws:rds:us-east-1:XXXXXXXXXXXX:cluster:my-cluster-name',
+  database: 'keyv_test', // default database
+});
 
-const store = () => new KeyvPostgres({ uri: 'postgresql://postgres@localhost:5432/keyv_test' });
 keyvTestSuite(test, Keyv, store);

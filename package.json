@@ -1,7 +1,7 @@
 {
-  "name": "@keyv/postgres",
-  "version": "1.0.16",
-  "description": "PostgreSQL storage adapter for Keyv",
+  "name": "keyv-aurora-data-api",
+  "version": "1.0.0",
+  "description": "AWS Aurora Data API adapter for Keyv",
   "main": "src/index.js",
   "scripts": {
     "test": "xo && nyc ava",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lukechilds/keyv-postgres.git"
+    "url": "git+https://github.com/lhr0909/keyv-aurora-data-api.git"
   },
   "keywords": [
     "postgres",
@@ -32,22 +32,22 @@
     "cache",
     "ttl"
   ],
-  "author": "Luke Childs <lukechilds123@gmail.com> (http://lukechilds.co.uk)",
+  "author": "Simon Liang <simon@x-tech.io> (http://divby0.io)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lukechilds/keyv-postgres/issues"
+    "url": "https://github.com/lhr0909/keyv-aurora-data-api/issues"
   },
-  "homepage": "https://github.com/lukechilds/keyv-postgres",
+  "homepage": "https://github.com/lhr0909/keyv-aurora-data-api",
   "dependencies": {
     "@keyv/sql": "1.1.2",
-    "pg": "7.4.1"
+    "data-api-client": "^1.1.0"
   },
   "devDependencies": {
+    "@keyv/test-suite": "*",
     "ava": "^0.24.0",
     "coveralls": "^3.0.0",
     "eslint-config-xo-lukechilds": "^1.0.0",
     "keyv": "*",
-    "@keyv/test-suite": "*",
     "nyc": "^11.0.3",
     "requirable": "^1.0.4",
     "this": "^1.0.2",
